@@ -19,6 +19,8 @@ import java.util.List;
 public class TestMutiSend {
     @Resource
     AliyunMQProducer2 producer;
+    @Resource
+    AliyunMQProducer2 producer2;
     @Test
     public void testMutiSend(){
         SalemenBatchSyncEntity salemenBatchSyncEntity = new SalemenBatchSyncEntity();
@@ -42,11 +44,15 @@ public class TestMutiSend {
         salemenBatchSyncEntity.setStatus(1);
         salemenBatchSyncEntity.setNote("");
         List<SalemenBatchSyncEntity> fansBindRelationEntities = new ArrayList<>();
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 10; i++) {
             fansBindRelationEntities.add(salemenBatchSyncEntity);
         }
         long l = System.currentTimeMillis();
         producer.mutiThreadSendSalemenSyncMessage(salemenBatchSyncEntity);
         long l2 = System.currentTimeMillis();
+    }
+    @Test
+    public void testProducer2(){
+
     }
 }
